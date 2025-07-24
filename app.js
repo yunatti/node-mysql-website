@@ -3,20 +3,9 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const cookieSession = require("cookie-session");
-const secret = "secretCuisine123";
+const passport = require('passport');
 
 const app = express();
-
-app.use(
-  cookieSession({
-    name: "session",
-    keys: [secret],
-
-    // Cookie Options
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-  })
-);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,6 +16,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// authorization
+require("./config/passport")(app);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // router
 app.use('/', require('./routes'));
