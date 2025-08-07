@@ -3,8 +3,9 @@ const router = express.Router();
 const passport = require("passport");
 
 router.get('/', function (req, res, next) {
-  const userId = req.session.userid;
-  const isAuth = Boolean(userId);
+    const isAuth = req.isAuthenticated();  // ここで認証判定
+  //const userId = req.session.userid;
+  //const isAuth = Boolean(userId);
   const messages = {
     error: req.flash('error')
   };
