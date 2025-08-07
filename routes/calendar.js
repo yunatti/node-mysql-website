@@ -3,12 +3,12 @@ const router = express.Router();
 const db = require('../db'); // 既存のDB接続モジュール
 
 // 認証チェック用ミドルウェア
-function ensureAuthenticated(req, res, next) {
+/*function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated && req.isAuthenticated()) {
     return next();
   }
   res.redirect('/signin'); // ログインしてない場合はサインインページへ
-}
+}*/
 
 // カレンダーページ表示
 router.get('/', ensureAuthenticated, async (req, res) => {

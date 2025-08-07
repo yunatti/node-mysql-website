@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>カレンダー</title>
+  <meta charset="UTF-8">
+  <title>ToDoカレンダー</title>
 </head>
 <body>
-  <h1>カレンダー</h1>
-  <form action="/calendar/add" method="POST">
-    <input type="text" name="title" placeholder="予定タイトル" required>
-    <input type="date" name="date" required>
-    <button type="submit">追加</button>
-  </form>
+  <h1>ToDoカレンダー</h1>
 
   <ul>
-    <% events.forEach(event => { %>
-      <li><%= event.date %>: <%= event.title %></li>
-    <% }) %>
+    <% tasks.forEach(function(task) { %>
+      <li><%= task.content %> - <%= task.due_date ? task.due_date.toISOString().slice(0, 10) : '未定' %></li>
+    <% }); %>
   </ul>
 
-  <a href="/">ホームに戻る</a>
+  <form action="/add" method="POST">
+    <input type="text" name="add" placeholder="やることを追加">
+    <input type="date" name="due_date">
+    <button type="submit">追加</button>
+  </form>
 </body>
 </html>
