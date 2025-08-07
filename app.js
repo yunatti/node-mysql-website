@@ -29,7 +29,6 @@ app.use(passport.session());
 const flash = require('connect-flash');
 app.use(flash());
 
-
 // router
 app.use('/', require('./routes'));
 
