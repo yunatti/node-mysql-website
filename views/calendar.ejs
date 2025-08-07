@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>カレンダー</title>
+  <style>
+    table { border-collapse: collapse; }
+    td, th { border: 1px solid #ccc; width: 100px; height: 80px; vertical-align: top; }
+  </style>
+</head>
+<body>
+  <h1>カレンダー</h1>
+  <form action="/calendar/add" method="post">
+    <input type="text" name="title" placeholder="イベント名">
+    <input type="date" name="date">
+    <button type="submit">追加</button>
+  </form>
+
+  <table>
+    <tr>
+      <th>日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th>
+    </tr>
+    <% 
+      const today = new Date();
+      const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+      const startDay = firstDay.getDay();
+      const daysInMonth = new Date(today.getFullYear(), today.getMonth()+1, 0).getDate();
+      let dayCount = 1 - startDay;
+    %>
+    <% for (let row=0; row<6; row++) { %>
+      <tr>
+        <% for (let col=0; col<7; col++) { %>
+          <td>
+            <% if(dayCount > 0 && dayCount <= daysInMonth) { %>
+              <%= dayCount %>
+              <ul>
+              <% events.forEach(event => {
+                   const d = new Date(event.event_date);
+                   if(d.getDate() === dayCount && d.getMonth() === today.getMonth()) { %>
+                     <li><%= event.title %></li>
+              <% } }); %>
+              </ul>
+            <% } %>
+          </td>
+          <% dayCount++; %>
+        <% } %>
+      </tr>
+    <% } %>
+  </table>
+</body>
+</html>
