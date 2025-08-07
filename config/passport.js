@@ -81,5 +81,6 @@ module.exports = function (app) {
 
    app.use(passport.initialize()); // ここを追加！
 
+  app.use(passport.initialize());
   app.use(passport.session());
 };
