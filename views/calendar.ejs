@@ -13,10 +13,11 @@
     <% }); %>
   </ul>
 
-  <form action="/add" method="POST">
-    <input type="text" name="add" placeholder="やることを追加">
-    <input type="date" name="due_date">
-    <button type="submit">追加</button>
-  </form>
+  <form action="/calendar/add" method="POST">
+  <input type="text" name="title" placeholder="やることを追加">
+  <input type="date" name="event_date">
+  <button type="submit">追加</button>
+</form>
+
 </body>
 </html>
