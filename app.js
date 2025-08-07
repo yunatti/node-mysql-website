@@ -7,6 +7,10 @@ const passport = require('passport');
 
 const app = express();
 
+const calendarRouter = require('./routes/calendar');
+app.use('/calendar', calendarRouter);
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
