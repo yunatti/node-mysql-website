@@ -20,12 +20,13 @@
       </form>
     </div>
     <div class="col-md-6">
-      <ul>
-        <% for(let todo of todos){ %>
-          <li><span><%= todo.content %></span></li>
-        <% } %>
-      </ul>
-    </div>
+  <ul>
+    <% for(let task of tasks){ %>
+      <li><span><%= task.content %></span></li>
+    <% } %>
+  </ul>
+</div>
+
   </div>
 </div>
 <% } else { %>
