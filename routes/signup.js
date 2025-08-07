@@ -31,9 +31,12 @@ router.post('/', function (req, res, next) {
         })
       } else if (password === repassword) {
         const hashedPassword = await bcrypt.hash(password, 10);
+        console.log("🔐 ハッシュ化パスワード:", hashedPassword); // ←追加
+        console.log("👤 新規ユーザー:", username); // ←追加
         knex("users")
           .insert({name: username, password: hashedPassword})
           .then(function () {
+            console.log("✅ ユーザー登録成功"); // ←追加
             res.redirect("/");
           })
           .catch(function (err) {

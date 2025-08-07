@@ -5,14 +5,18 @@ const passport = require("passport");
 router.get('/', function (req, res, next) {
   const userId = req.session.userid;
   const isAuth = Boolean(userId);
+  const messages = {
+    error: req.flash('error')
+  };
   res.render("signin", {
     title: "Sign in",
     isAuth: isAuth,
+    messages: messages,
   });
 });
 
 router.post('/', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/calendar',
     failureRedirect: '/signin',
     failureFlash: true,
   }

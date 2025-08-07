@@ -3,6 +3,9 @@ const router = express.Router();
 const knex = require('../db/knex');
 
 router.get('/', function (req, res, next) {
+  if (req.isAuthenticated && req.isAuthenticated()) {
+    return res.redirect('/calendar');
+  }
   const userId = req.session.userid;
   const isAuth = Boolean(userId);
   knex("tasks")
